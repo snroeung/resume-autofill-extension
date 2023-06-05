@@ -1,6 +1,32 @@
+import { useState } from "react";
 import { stateList, countryList } from "../array"
 
 function ContactInformation() {
+    const [contactInformation, setContactInformation] = useState({
+        firstName: "",
+        lastName: "",
+        emailAddress: "",
+        phoneNumber: "",
+        addressLine1: "",
+        addressLine2: "",
+        city: "",
+        state: "",
+        country: "United States",
+        university: "",
+        degreeType: "",
+        major: "",
+        websiteUrl: "",
+        linkedinUrl: "",
+        githubUrl: ""
+    });
+
+    function handleContactInformation(id, event) {
+        setContactInformation((information) => ({
+            ...information, 
+            [id]: event.target.value
+        }));
+    }
+
     const selectStateNames = stateList.map((state) =>
         <option>{state}</option>
     );
@@ -20,7 +46,10 @@ function ContactInformation() {
                 <div className="flex flex-row justify-around my-2">
                     <label>
                         <span className="text-gray-700">First name</span>
-                        <input type="text" className="
+                        <input type="text" 
+                        value={contactInformation.firstName}
+                        onChange={(event) => handleContactInformation("firstName", event)}
+                        className="
                     mt-1
                     block
                     w-full
@@ -31,7 +60,10 @@ function ContactInformation() {
                     </label>
                     <label>
                         <span className="text-gray-700">Last name</span>
-                        <input type="text" className="
+                        <input type="text" 
+                        value={contactInformation.lastName}
+                        onChange={(event) => handleContactInformation("lastName", event)}
+                        className="
                     mt-1
                     block
                     w-full
@@ -52,6 +84,17 @@ function ContactInformation() {
                     bg-gray-100
                     border-transparent
                     focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="john@example.com" />
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Phone number</span>
+                        <input type="tel" className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="123-456-6789" />
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Address Line 1</span>
