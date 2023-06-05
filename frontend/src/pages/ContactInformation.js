@@ -64,7 +64,6 @@ function ContactInformation() {
                     border-transparent
                     focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="1 Main St" />
                     </label>
-
                 </div>
                 <div className="flex flex-row justify-around my-2">
                     <label className="my-2">
@@ -118,6 +117,76 @@ function ContactInformation() {
                     focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="">
                             {selectCountryNames}
                         </select>
+                    </label>
+                </div>
+                <div className="flex flex-col mt-12 my-2">
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">University</span>
+                        <input type="text" className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Degree Type</span>
+                        <input type="text" className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Major</span>
+                        <input type="text" className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                </div>
+                <div className="flex flex-col mt-12 my-2">
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Website</span>
+                        <input type="url" className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Linkedin</span>
+                        <input type="text" className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Github</span>
+                        <input type="url" className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
                     </label>
                 </div>
             </form>
