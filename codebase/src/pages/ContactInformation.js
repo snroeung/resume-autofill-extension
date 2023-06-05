@@ -76,7 +76,10 @@ function ContactInformation() {
                 <div className="flex flex-col my-2">
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Email address</span>
-                        <input type="email" className="
+                        <input type="email" 
+                        value={contactInformation.emailAddress}
+                        onChange={(event) => handleContactInformation("emailAddress", event)}
+                        className="
                     mt-1
                     block
                     mx-12
@@ -87,7 +90,10 @@ function ContactInformation() {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Phone number</span>
-                        <input type="tel" className="
+                        <input type="tel" 
+                        value={contactInformation.phoneNumber}
+                        onChange={(event) => handleContactInformation("phoneNumber", event)}
+                        className="
                     mt-1
                     block
                     mx-12
@@ -98,7 +104,10 @@ function ContactInformation() {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Address Line 1</span>
-                        <input type="text" className="
+                        <input type="text" 
+                        value={contactInformation.addressLine1}
+                        onChange={(event) => handleContactInformation("addressLine1", event)}
+                        className="
                     mt-1
                     block
                     mx-12
@@ -111,7 +120,10 @@ function ContactInformation() {
                 <div className="flex flex-row justify-around my-2">
                     <label className="my-2">
                         <span className="text-gray-700">Address Line 2</span>
-                        <input type="text" className="
+                        <input type="text" 
+                        value={contactInformation.addressLine2}
+                        onChange={(event) => handleContactInformation("addressLine2", event)}
+                        className="
                     mt-1
                     block
                     w-full
@@ -122,7 +134,10 @@ function ContactInformation() {
                     </label>
                     <label className="my-2">
                         <span className="text-gray-700">City</span>
-                        <input type="text" className="
+                        <input type="text" 
+                        value={contactInformation.city}
+                        onChange={(event) => handleContactInformation("city", event)}
+                        className="
                     mt-1
                     block
                     w-full
@@ -135,7 +150,10 @@ function ContactInformation() {
                 <div className="flex flex-row justify-around my-2">
                     <label>
                         <span className="text-gray-700">State</span>
-                        <select className="
+                        <select 
+                        value={contactInformation.state}
+                        onChange={(event) => handleContactInformation("state", event)}
+                        className="
                     mt-1
                     mx-1
                     block
@@ -149,7 +167,10 @@ function ContactInformation() {
                     </label>
                     <label>
                         <span className="text-gray-700">Country</span>
-                        <select className="
+                        <select 
+                        value={contactInformation.country}
+                        onChange={(event) => handleContactInformation("country", event)}
+                        className="
                     mt-1
                     mx-1
                     block
@@ -165,7 +186,10 @@ function ContactInformation() {
                 <div className="flex flex-col mt-12 my-2">
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">University</span>
-                        <input type="text" className="
+                        <input type="text" 
+                        value={contactInformation.university}
+                        onChange={(event) => handleContactInformation("university", event)}
+                        className="
                     mt-1
                     block
                     mx-12
@@ -176,7 +200,10 @@ function ContactInformation() {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Degree Type</span>
-                        <input type="text" className="
+                        <input type="text" 
+                        value={contactInformation.degreeType}
+                        onChange={(event) => handleContactInformation("degreeType", event)}
+                        className="
                     mt-1
                     block
                     mx-12
@@ -187,7 +214,10 @@ function ContactInformation() {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Major</span>
-                        <input type="text" className="
+                        <input type="text" 
+                        value={contactInformation.major}
+                        onChange={(event) => handleContactInformation("major", event)}
+                        className="
                     mt-1
                     block
                     mx-12
@@ -200,7 +230,10 @@ function ContactInformation() {
                 <div className="flex flex-col mt-12 my-2">
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Website</span>
-                        <input type="url" className="
+                        <input type="url" 
+                        value={contactInformation.websiteUrl}
+                        onChange={(event) => handleContactInformation("websiteUrl", event)}
+                        className="
                     mt-1
                     block
                     mx-12
@@ -211,7 +244,10 @@ function ContactInformation() {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Linkedin</span>
-                        <input type="text" className="
+                        <input type="text" 
+                        value={contactInformation.linkedinUrl}
+                        onChange={(event) => handleContactInformation("linkedinUrl", event)}
+                        className="
                     mt-1
                     block
                     mx-12
@@ -222,7 +258,10 @@ function ContactInformation() {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Github</span>
-                        <input type="url" className="
+                        <input type="url" 
+                        value={contactInformation.githubUrl}
+                        onChange={(event) => handleContactInformation("githubUrl", event)}
+                        className="
                     mt-1
                     block
                     mx-12

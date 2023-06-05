@@ -1,16 +1,40 @@
 import { useState } from "react";
 
 function Experience() {
-    const [isCurrentPosition, setIsCurrentPosition] = useState({
-        experience1: false,
-        experience2: false,
-        experience3: false
+    const [experiences, setExperiences] = useState({
+        experience1: {
+            jobTitle: "",
+            company: "",
+            startDate: "",
+            endDate: "",
+            isCurrentPosition: false,
+            description: ""
+        },
+        experience2: {
+            jobTitle: "",
+            company: "",
+            startDate: "",
+            endDate: "",
+            isCurrentPosition: false,
+            description: ""
+        },
+        experience3: {
+            jobTitle: "",
+            company: "",
+            startDate: "",
+            endDate: "",
+            isCurrentPosition: false,
+            description: ""
+        }
     });
 
     function handleCurrentPositionChange(experienceId) {
-        setIsCurrentPosition((experiences) => ({
+        setExperiences((experiences) => ({
             ...experiences,
-            [experienceId]: !experiences[experienceId]
+            [experienceId]: {
+                ...experiences[experienceId],
+                isCurrentPosition: !experiences[experienceId].isCurrentPosition
+            }
         }));
     };
 
@@ -61,7 +85,7 @@ function Experience() {
                         </label>
                         <label>
                             <span className="text-gray-700">End date</span>
-                            <input type="date" disabled={isCurrentPosition.experience1} className="
+                            <input type="date" disabled={experiences.experience1.isCurrentPosition} className="
                     mt-1
                     block
                     w-full
@@ -74,7 +98,7 @@ function Experience() {
                     <div>
                         <label class="inline-flex">
                             <input type="checkbox"
-                                checked={isCurrentPosition.experience1}
+                                checked={experiences.experience1.isCurrentPosition}
                                 onChange={() => handleCurrentPositionChange("experience1")}
                                 class="
                           border-gray-300 border-2
