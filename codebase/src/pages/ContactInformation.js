@@ -20,7 +20,7 @@ function ContactInformation() {
         githubUrl: ""
     });
 
-    function handleContactInformation(id, event) {
+    function handleContactInformationChange(id, event) {
         setContactInformation((information) => ({
             ...information, 
             [id]: event.target.value
@@ -48,7 +48,7 @@ function ContactInformation() {
                         <span className="text-gray-700">First name</span>
                         <input type="text" 
                         value={contactInformation.firstName}
-                        onChange={(event) => handleContactInformation("firstName", event)}
+                        onChange={(event) => handleContactInformationChange("firstName", event)}
                         className="
                     mt-1
                     block
@@ -62,7 +62,7 @@ function ContactInformation() {
                         <span className="text-gray-700">Last name</span>
                         <input type="text" 
                         value={contactInformation.lastName}
-                        onChange={(event) => handleContactInformation("lastName", event)}
+                        onChange={(event) => handleContactInformationChange("lastName", event)}
                         className="
                     mt-1
                     block
@@ -78,7 +78,7 @@ function ContactInformation() {
                         <span className="text-gray-700">Email address</span>
                         <input type="email" 
                         value={contactInformation.emailAddress}
-                        onChange={(event) => handleContactInformation("emailAddress", event)}
+                        onChange={(event) => handleContactInformationChange("emailAddress", event)}
                         className="
                     mt-1
                     block
@@ -92,7 +92,7 @@ function ContactInformation() {
                         <span className="text-gray-700">Phone number</span>
                         <input type="tel" 
                         value={contactInformation.phoneNumber}
-                        onChange={(event) => handleContactInformation("phoneNumber", event)}
+                        onChange={(event) => handleContactInformationChange("phoneNumber", event)}
                         className="
                     mt-1
                     block
@@ -106,7 +106,7 @@ function ContactInformation() {
                         <span className="text-gray-700">Address Line 1</span>
                         <input type="text" 
                         value={contactInformation.addressLine1}
-                        onChange={(event) => handleContactInformation("addressLine1", event)}
+                        onChange={(event) => handleContactInformationChange("addressLine1", event)}
                         className="
                     mt-1
                     block
@@ -122,7 +122,7 @@ function ContactInformation() {
                         <span className="text-gray-700">Address Line 2</span>
                         <input type="text" 
                         value={contactInformation.addressLine2}
-                        onChange={(event) => handleContactInformation("addressLine2", event)}
+                        onChange={(event) => handleContactInformationChange("addressLine2", event)}
                         className="
                     mt-1
                     block
@@ -136,7 +136,7 @@ function ContactInformation() {
                         <span className="text-gray-700">City</span>
                         <input type="text" 
                         value={contactInformation.city}
-                        onChange={(event) => handleContactInformation("city", event)}
+                        onChange={(event) => handleContactInformationChange("city", event)}
                         className="
                     mt-1
                     block
@@ -152,7 +152,7 @@ function ContactInformation() {
                         <span className="text-gray-700">State</span>
                         <select 
                         value={contactInformation.state}
-                        onChange={(event) => handleContactInformation("state", event)}
+                        onChange={(event) => handleContactInformationChange("state", event)}
                         className="
                     mt-1
                     mx-1
@@ -169,7 +169,7 @@ function ContactInformation() {
                         <span className="text-gray-700">Country</span>
                         <select 
                         value={contactInformation.country}
-                        onChange={(event) => handleContactInformation("country", event)}
+                        onChange={(event) => handleContactInformationChange("country", event)}
                         className="
                     mt-1
                     mx-1
@@ -188,7 +188,7 @@ function ContactInformation() {
                         <span className="text-gray-700">University</span>
                         <input type="text" 
                         value={contactInformation.university}
-                        onChange={(event) => handleContactInformation("university", event)}
+                        onChange={(event) => handleContactInformationChange("university", event)}
                         className="
                     mt-1
                     block
@@ -202,7 +202,7 @@ function ContactInformation() {
                         <span className="text-gray-700">Degree Type</span>
                         <input type="text" 
                         value={contactInformation.degreeType}
-                        onChange={(event) => handleContactInformation("degreeType", event)}
+                        onChange={(event) => handleContactInformationChange("degreeType", event)}
                         className="
                     mt-1
                     block
@@ -216,7 +216,7 @@ function ContactInformation() {
                         <span className="text-gray-700">Major</span>
                         <input type="text" 
                         value={contactInformation.major}
-                        onChange={(event) => handleContactInformation("major", event)}
+                        onChange={(event) => handleContactInformationChange("major", event)}
                         className="
                     mt-1
                     block
@@ -232,7 +232,7 @@ function ContactInformation() {
                         <span className="text-gray-700">Website</span>
                         <input type="url" 
                         value={contactInformation.websiteUrl}
-                        onChange={(event) => handleContactInformation("websiteUrl", event)}
+                        onChange={(event) => handleContactInformationChange("websiteUrl", event)}
                         className="
                     mt-1
                     block
@@ -246,7 +246,7 @@ function ContactInformation() {
                         <span className="text-gray-700">Linkedin</span>
                         <input type="text" 
                         value={contactInformation.linkedinUrl}
-                        onChange={(event) => handleContactInformation("linkedinUrl", event)}
+                        onChange={(event) => handleContactInformationChange("linkedinUrl", event)}
                         className="
                     mt-1
                     block
@@ -260,7 +260,7 @@ function ContactInformation() {
                         <span className="text-gray-700">Github</span>
                         <input type="url" 
                         value={contactInformation.githubUrl}
-                        onChange={(event) => handleContactInformation("githubUrl", event)}
+                        onChange={(event) => handleContactInformationChange("githubUrl", event)}
                         className="
                     mt-1
                     block
