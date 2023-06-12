@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { stateList, countryList } from "../array"
 
-function ContactInformation() {
+function ContactInformation({ setSavedContactInformation }) {
     const [contactInformation, setContactInformation] = useState({
         firstName: "",
         lastName: "",
@@ -20,13 +20,6 @@ function ContactInformation() {
         githubUrl: ""
     });
 
-    function handleContactInformationChange(id, event) {
-        setContactInformation((information) => ({
-            ...information, 
-            [id]: event.target.value
-        }));
-    }
-
     const selectStateNames = stateList.map((state) =>
         <option>{state}</option>
     );
@@ -35,10 +28,21 @@ function ContactInformation() {
         <option>{country}</option>
     );
 
+    function handleContactInformationChange(id, event) {
+        setContactInformation((information) => ({
+            ...information, 
+            [id]: event.target.value
+        }));
+    }
+
+    useEffect(() => {
+        setSavedContactInformation({ contactInformation })
+    }, [contactInformation]);
+
     return (
-        <div className="App">
+        <div className="py-12 text-center">
             <header>
-                <h2>
+                <h2 className="text-2xl font-bold">
                     Contact Information
                 </h2>
             </header>

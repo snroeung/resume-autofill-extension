@@ -1,18 +1,16 @@
 function ExperienceComponent({ experience, updateExperience, onDelete }) {
-
     function handleInputChange(id, value) {
         const updatedExperience = {
             ...experience,
             [id]: value
         };
-
         updateExperience(updatedExperience);
     }
 
     return (
-        <form>
+        <form className="flex flex-col my-4">
             <div>
-                <div className="flex flex-col my-2">
+                <div>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Job title</span>
                         <input type="text"
@@ -73,25 +71,25 @@ function ExperienceComponent({ experience, updateExperience, onDelete }) {
                     </label>
                 </div>
                 <div>
-                    <label class="inline-flex">
+                    <label className="inline-flex">
                         <input type="checkbox"
                             checked={experience.isCurrentPosition}
                             onChange={(event) => handleInputChange("isCurrentPosition", event.target.value)}
-                            class="
+                            className="
                         border-gray-300 border-2
                         text-black
                         focus:border-gray-300 focus:ring-black
                     " />
-                        <span class="ml-2">I currently work here</span>
+                        <span className="ml-2">I currently work here</span>
                     </label>
                 </div>
                 <div className="flex flex-col my-2">
                     <label className="flex flex-col justify-center">
-                        <span class="text-gray-700">Description</span>
+                        <span className="text-gray-700">Description</span>
                         <textarea 
                         value={experience.description}
                         onChange={(event) => handleInputChange("description", event.target.value)}
-                        class="
+                        className="
                 mt-1
                 block
                 w-full
@@ -99,10 +97,11 @@ function ExperienceComponent({ experience, updateExperience, onDelete }) {
                 bg-gray-100
                 border-transparent
                 focus:border-gray-500 focus:bg-white focus:ring-0
-                " rows="3" spellcheck="false"></textarea>
+                " rows="3" spellCheck="false"></textarea>
                     </label>
                 </div>
-                <button onClick={onDelete}>Delete experience</button>
+                <button className="px-4 py-1 text-sm text-red-600 font-semibold rounded-full border border-red-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"
+                onClick={onDelete}>Delete experience</button>
             </div>
         </form>
     );
