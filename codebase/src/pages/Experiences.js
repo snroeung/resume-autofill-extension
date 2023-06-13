@@ -46,7 +46,7 @@ function Experiences({setSavedExperiences}) {
 
     useEffect(() => {
         setSavedExperiences({ experiences })
-    }, [experiences]);
+    }, [setSavedExperiences, experiences]);
 
     return (
         <div className="py-12 text-center">

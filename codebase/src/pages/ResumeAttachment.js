@@ -1,5 +1,7 @@
 import { useState } from "react";
 function ResumeAttachment() {
+    //added ignore line since `resume` is not used yet
+    // eslint-disable-next-line
     const [resume, setResume] = useState();
 
     return (
@@ -20,8 +22,7 @@ function ResumeAttachment() {
       file:bg-violet-50 file:text-violet-700
       hover:file:bg-violet-100
     "
-    onChange={(e) => setResume(e.target.files[0])}
-    />
+    onChange={(e) => setResume(e.target.files[0])}    />
                 </label>
                 </div>
             </form>

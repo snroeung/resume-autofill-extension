@@ -37,7 +37,7 @@ function ContactInformation({ setSavedContactInformation }) {
 
     useEffect(() => {
         setSavedContactInformation({ contactInformation })
-    }, [contactInformation]);
+    }, [setSavedContactInformation, contactInformation]);
 
     return (
         <div className="py-12 text-center">
