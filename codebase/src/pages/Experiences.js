@@ -13,8 +13,6 @@ function Experiences({setSavedExperiences}) {
         }
     ]);
 
-    //TODO: add function to disable the delete experience button for all experience components except the last one
-
     function addExperience() {
         setExperiences(experiences => [
             ...experiences,
@@ -29,12 +27,9 @@ function Experiences({setSavedExperiences}) {
         ]);
     };
 
-    function removeExperience(index) {
-        setExperiences(experiences => {
-            const updatedExperiences = experiences.filter((_, experienceIndex) => experienceIndex !== index);
-            return updatedExperiences;
-        });
-    };
+    function deleteLastExperience() {
+        setExperiences(experiences.slice(0, -1));
+    }
 
     function updateExperience(index, updatedExperience) {
         setExperiences(experiences => {
@@ -66,11 +61,12 @@ function Experiences({setSavedExperiences}) {
                         key={`experience${index + 1}`}
                         experience={experience}
                         updateExperience={(updatedExperience) => updateExperience(index, updatedExperience)}
-                        onDelete={() => removeExperience(index)}
                     />
                     <br />
                 </>
             ))}
+             <button className="px-4 py-1 text-sm text-red-600 font-semibold rounded-full border border-red-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"
+                onClick={() => deleteLastExperience()}>Delete experience</button>
         </div>
     );
 }
