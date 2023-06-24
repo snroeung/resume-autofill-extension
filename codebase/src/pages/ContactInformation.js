@@ -1,0 +1,283 @@
+import { useEffect, useState } from "react";
+import { stateList, countryList } from "../array"
+
+function ContactInformation({ setSavedContactInformation }) {
+    const [contactInformation, setContactInformation] = useState({
+        firstName: "",
+        lastName: "",
+        emailAddress: "",
+        phoneNumber: "",
+        addressLine1: "",
+        addressLine2: "",
+        city: "",
+        state: "",
+        country: "United States",
+        university: "",
+        degreeType: "",
+        major: "",
+        websiteUrl: "",
+        linkedinUrl: "",
+        githubUrl: ""
+    });
+
+    const selectStateNames = stateList.map((state) =>
+        <option>{state}</option>
+    );
+
+    const selectCountryNames = countryList.map((country) =>
+        <option>{country}</option>
+    );
+
+    function handleContactInformationChange(id, event) {
+        setContactInformation((information) => ({
+            ...information, 
+            [id]: event.target.value
+        }));
+    }
+
+    useEffect(() => {
+        setSavedContactInformation({ contactInformation })
+    }, [setSavedContactInformation, contactInformation]);
+
+    return (
+        <div className="py-12 text-center">
+            <header>
+                <h2 className="text-2xl font-bold">
+                    Contact Information
+                </h2>
+            </header>
+            <form>
+                <div className="flex flex-row justify-around my-2">
+                    <label>
+                        <span className="text-gray-700">First name</span>
+                        <input type="text" 
+                        value={contactInformation.firstName}
+                        onChange={(event) => handleContactInformationChange("firstName", event)}
+                        className="
+                    mt-1
+                    block
+                    w-full
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="John" />
+                    </label>
+                    <label>
+                        <span className="text-gray-700">Last name</span>
+                        <input type="text" 
+                        value={contactInformation.lastName}
+                        onChange={(event) => handleContactInformationChange("lastName", event)}
+                        className="
+                    mt-1
+                    block
+                    w-full
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="Appleseed" />
+                    </label>
+                </div>
+                <div className="flex flex-col my-2">
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Email address</span>
+                        <input type="email" 
+                        value={contactInformation.emailAddress}
+                        onChange={(event) => handleContactInformationChange("emailAddress", event)}
+                        className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="john@example.com" />
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Phone number</span>
+                        <input type="tel" 
+                        value={contactInformation.phoneNumber}
+                        onChange={(event) => handleContactInformationChange("phoneNumber", event)}
+                        className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="123-456-6789" />
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Address Line 1</span>
+                        <input type="text" 
+                        value={contactInformation.addressLine1}
+                        onChange={(event) => handleContactInformationChange("addressLine1", event)}
+                        className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="1 Main St" />
+                    </label>
+                </div>
+                <div className="flex flex-row justify-around my-2">
+                    <label className="my-2">
+                        <span className="text-gray-700">Address Line 2</span>
+                        <input type="text" 
+                        value={contactInformation.addressLine2}
+                        onChange={(event) => handleContactInformationChange("addressLine2", event)}
+                        className="
+                    mt-1
+                    block
+                    w-full
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="Apt 001" />
+                    </label>
+                    <label className="my-2">
+                        <span className="text-gray-700">City</span>
+                        <input type="text" 
+                        value={contactInformation.city}
+                        onChange={(event) => handleContactInformationChange("city", event)}
+                        className="
+                    mt-1
+                    block
+                    w-full
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                </div>
+                <div className="flex flex-row justify-around my-2">
+                    <label>
+                        <span className="text-gray-700">State</span>
+                        <select 
+                        value={contactInformation.state}
+                        onChange={(event) => handleContactInformationChange("state", event)}
+                        className="
+                    mt-1
+                    mx-1
+                    block
+                    w-full
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="">
+                            {selectStateNames}
+                        </select>
+                    </label>
+                    <label>
+                        <span className="text-gray-700">Country</span>
+                        <select 
+                        value={contactInformation.country}
+                        onChange={(event) => handleContactInformationChange("country", event)}
+                        className="
+                    mt-1
+                    mx-1
+                    block
+                    w-full
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="">
+                            {selectCountryNames}
+                        </select>
+                    </label>
+                </div>
+                <div className="flex flex-col mt-12 my-2">
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">University</span>
+                        <input type="text" 
+                        value={contactInformation.university}
+                        onChange={(event) => handleContactInformationChange("university", event)}
+                        className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Degree Type</span>
+                        <input type="text" 
+                        value={contactInformation.degreeType}
+                        onChange={(event) => handleContactInformationChange("degreeType", event)}
+                        className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Major</span>
+                        <input type="text" 
+                        value={contactInformation.major}
+                        onChange={(event) => handleContactInformationChange("major", event)}
+                        className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                </div>
+                <div className="flex flex-col mt-12 my-2">
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Website</span>
+                        <input type="url" 
+                        value={contactInformation.websiteUrl}
+                        onChange={(event) => handleContactInformationChange("websiteUrl", event)}
+                        className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Linkedin</span>
+                        <input type="text" 
+                        value={contactInformation.linkedinUrl}
+                        onChange={(event) => handleContactInformationChange("linkedinUrl", event)}
+                        className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">Github</span>
+                        <input type="url" 
+                        value={contactInformation.githubUrl}
+                        onChange={(event) => handleContactInformationChange("githubUrl", event)}
+                        className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    </label>
+                </div>
+            </form>
+        </div>
+    );
+}
+
+export default ContactInformation
