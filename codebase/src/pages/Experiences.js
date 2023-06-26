@@ -1,8 +1,27 @@
 import { useState, useEffect } from "react";
 import ExperienceComponent from "../components/ExperienceComponent";
+import { getChromeStorage } from "../chrome";
+
+async function getExperiencesFromStorage() {
+    return new Promise((resolve, reject) => {
+      getChromeStorage()
+        .then((storage) => {
+          storage.sync.get(["experiences"], (result) => {
+            const dataResult = result.experiences?.experiences;
+            resolve(dataResult);
+          });
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
 
 function Experiences({setSavedExperiences}) {
-    const [experiences, setExperiences] = useState([
+    const [storedExperiences, setStoredExperiences] = useState(null);
+    const [experiences, setExperiences] = useState( 
+        storedExperiences
+        ?? [
         {
             jobTitle: "",
             company: "",
@@ -38,6 +57,21 @@ function Experiences({setSavedExperiences}) {
             return updatedExperiences;
         });
     };
+
+    useEffect(() => {
+        getExperiencesFromStorage().then((data) => {
+            setStoredExperiences(data);
+        });
+    }, []);
+
+    useEffect(() => {
+        if (storedExperiences) {
+            setExperiences((prevStoredExperiences) => ({
+            ...prevStoredExperiences,
+            ...storedExperiences
+          }));
+        }
+      }, [storedExperiences]);
 
     useEffect(() => {
         setSavedExperiences({ experiences })

@@ -3,13 +3,22 @@ import ContactInformation from './pages/ContactInformation';
 import ResumeAttachment from './pages/ResumeAttachment';
 import Experiences from './pages/Experiences';
 import { useState } from 'react';
+import { getChromeStorage } from './chrome';
 
 function App() {
-  const [savedContactInformation, setSavedContactInformation] = useState({});
+  const [savedContactInformation, setSavedContactInformation] = useState();
   const [savedExperiences, setSavedExperiences] = useState({});
 
   function handleSaveAll() {
-    console.log(savedContactInformation);
+    getChromeStorage()
+    .then((storage) => {
+      storage.sync.set({ "contactInfo": savedContactInformation, "experiences": savedExperiences }, () => {
+        console.log('Data saved successfully.');
+      });
+      storage.sync.get(["experiences", "contactInfo"], (result) => {
+        console.log("Result retrieved: ", result);
+      });
+    })  
   }
 
   return (

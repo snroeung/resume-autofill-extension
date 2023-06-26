@@ -1,24 +1,60 @@
 import { useEffect, useState } from "react";
 import { stateList, countryList } from "../array"
+import { getChromeStorage } from "../chrome";
+
+async function getContactInformationFromStorage() {
+    return new Promise((resolve, reject) => {
+      getChromeStorage()
+        .then((storage) => {
+          storage.sync.get(["contactInfo"], (result) => {
+            const dataResult = result.contactInfo?.contactInformation;
+            resolve(dataResult);
+          });
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
 
 function ContactInformation({ setSavedContactInformation }) {
-    const [contactInformation, setContactInformation] = useState({
-        firstName: "",
-        lastName: "",
-        emailAddress: "",
-        phoneNumber: "",
-        addressLine1: "",
-        addressLine2: "",
-        city: "",
-        state: "",
-        country: "United States",
-        university: "",
-        degreeType: "",
-        major: "",
-        websiteUrl: "",
-        linkedinUrl: "",
-        githubUrl: ""
+    const [storedContactInformation, setStoredContactInformation] = useState(null);
+    const [contactInformation, setContactInformation] = useState(() => {
+        return {
+            firstName: storedContactInformation?.firstName ?? "",
+            lastName: storedContactInformation?.lastName ?? "",
+            emailAddress: storedContactInformation?.emailAddress ?? "",
+            phoneNumber: storedContactInformation?.phoneNumber ?? "",
+            addressLine1: storedContactInformation?.addressLine1 ?? "",
+            addressLine2: storedContactInformation?.addressLine2 ?? "",
+            city: storedContactInformation?.city ?? "",
+            state: storedContactInformation?.state ?? "Alabama",
+            country: storedContactInformation?.country ?? "United States",
+            university: storedContactInformation?.university ?? "",
+            degreeType: storedContactInformation?.degreeType ?? "",
+            major: storedContactInformation?.major ?? "",
+            websiteUrl: storedContactInformation?.websiteUrl ?? "",
+            linkedinUrl: storedContactInformation?.linkedinUrl ?? "",
+            githubUrl: storedContactInformation?.githubUrl ?? ""
+        };
     });
+
+    // set storedContactInformation by getting data from chrome storage
+    useEffect(() => {
+        getContactInformationFromStorage().then((data) => {
+            setStoredContactInformation(data);
+        });
+    }, []);
+
+    // set the contact information based on the stored information from chrome storage 
+    useEffect(() => {
+        if (storedContactInformation) {
+          setContactInformation((prevContactInformation) => ({
+            ...prevContactInformation,
+            ...storedContactInformation
+          }));
+        }
+      }, [storedContactInformation]);
 
     const selectStateNames = stateList.map((state) =>
         <option>{state}</option>
@@ -30,7 +66,7 @@ function ContactInformation({ setSavedContactInformation }) {
 
     function handleContactInformationChange(id, event) {
         setContactInformation((information) => ({
-            ...information, 
+            ...information,
             [id]: event.target.value
         }));
     }
@@ -50,10 +86,10 @@ function ContactInformation({ setSavedContactInformation }) {
                 <div className="flex flex-row justify-around my-2">
                     <label>
                         <span className="text-gray-700">First name</span>
-                        <input type="text" 
-                        value={contactInformation.firstName}
-                        onChange={(event) => handleContactInformationChange("firstName", event)}
-                        className="
+                        <input type="text"
+                            value={contactInformation.firstName}
+                            onChange={(event) => handleContactInformationChange("firstName", event)}
+                            className="
                     mt-1
                     block
                     w-full
@@ -64,10 +100,10 @@ function ContactInformation({ setSavedContactInformation }) {
                     </label>
                     <label>
                         <span className="text-gray-700">Last name</span>
-                        <input type="text" 
-                        value={contactInformation.lastName}
-                        onChange={(event) => handleContactInformationChange("lastName", event)}
-                        className="
+                        <input type="text"
+                            value={contactInformation.lastName}
+                            onChange={(event) => handleContactInformationChange("lastName", event)}
+                            className="
                     mt-1
                     block
                     w-full
@@ -80,10 +116,10 @@ function ContactInformation({ setSavedContactInformation }) {
                 <div className="flex flex-col my-2">
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Email address</span>
-                        <input type="email" 
-                        value={contactInformation.emailAddress}
-                        onChange={(event) => handleContactInformationChange("emailAddress", event)}
-                        className="
+                        <input type="email"
+                            value={contactInformation.emailAddress}
+                            onChange={(event) => handleContactInformationChange("emailAddress", event)}
+                            className="
                     mt-1
                     block
                     mx-12
@@ -94,10 +130,10 @@ function ContactInformation({ setSavedContactInformation }) {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Phone number</span>
-                        <input type="tel" 
-                        value={contactInformation.phoneNumber}
-                        onChange={(event) => handleContactInformationChange("phoneNumber", event)}
-                        className="
+                        <input type="tel"
+                            value={contactInformation.phoneNumber}
+                            onChange={(event) => handleContactInformationChange("phoneNumber", event)}
+                            className="
                     mt-1
                     block
                     mx-12
@@ -108,10 +144,10 @@ function ContactInformation({ setSavedContactInformation }) {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Address Line 1</span>
-                        <input type="text" 
-                        value={contactInformation.addressLine1}
-                        onChange={(event) => handleContactInformationChange("addressLine1", event)}
-                        className="
+                        <input type="text"
+                            value={contactInformation.addressLine1}
+                            onChange={(event) => handleContactInformationChange("addressLine1", event)}
+                            className="
                     mt-1
                     block
                     mx-12
@@ -124,10 +160,10 @@ function ContactInformation({ setSavedContactInformation }) {
                 <div className="flex flex-row justify-around my-2">
                     <label className="my-2">
                         <span className="text-gray-700">Address Line 2</span>
-                        <input type="text" 
-                        value={contactInformation.addressLine2}
-                        onChange={(event) => handleContactInformationChange("addressLine2", event)}
-                        className="
+                        <input type="text"
+                            value={contactInformation.addressLine2}
+                            onChange={(event) => handleContactInformationChange("addressLine2", event)}
+                            className="
                     mt-1
                     block
                     w-full
@@ -138,10 +174,10 @@ function ContactInformation({ setSavedContactInformation }) {
                     </label>
                     <label className="my-2">
                         <span className="text-gray-700">City</span>
-                        <input type="text" 
-                        value={contactInformation.city}
-                        onChange={(event) => handleContactInformationChange("city", event)}
-                        className="
+                        <input type="text"
+                            value={contactInformation.city}
+                            onChange={(event) => handleContactInformationChange("city", event)}
+                            className="
                     mt-1
                     block
                     w-full
@@ -154,10 +190,10 @@ function ContactInformation({ setSavedContactInformation }) {
                 <div className="flex flex-row justify-around my-2">
                     <label>
                         <span className="text-gray-700">State</span>
-                        <select 
-                        value={contactInformation.state}
-                        onChange={(event) => handleContactInformationChange("state", event)}
-                        className="
+                        <select
+                            value={contactInformation.state}
+                            onChange={(event) => handleContactInformationChange("state", event)}
+                            className="
                     mt-1
                     mx-1
                     block
@@ -171,10 +207,10 @@ function ContactInformation({ setSavedContactInformation }) {
                     </label>
                     <label>
                         <span className="text-gray-700">Country</span>
-                        <select 
-                        value={contactInformation.country}
-                        onChange={(event) => handleContactInformationChange("country", event)}
-                        className="
+                        <select
+                            value={contactInformation.country}
+                            onChange={(event) => handleContactInformationChange("country", event)}
+                            className="
                     mt-1
                     mx-1
                     block
@@ -190,10 +226,10 @@ function ContactInformation({ setSavedContactInformation }) {
                 <div className="flex flex-col mt-12 my-2">
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">University</span>
-                        <input type="text" 
-                        value={contactInformation.university}
-                        onChange={(event) => handleContactInformationChange("university", event)}
-                        className="
+                        <input type="text"
+                            value={contactInformation.university}
+                            onChange={(event) => handleContactInformationChange("university", event)}
+                            className="
                     mt-1
                     block
                     mx-12
@@ -204,10 +240,10 @@ function ContactInformation({ setSavedContactInformation }) {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Degree Type</span>
-                        <input type="text" 
-                        value={contactInformation.degreeType}
-                        onChange={(event) => handleContactInformationChange("degreeType", event)}
-                        className="
+                        <input type="text"
+                            value={contactInformation.degreeType}
+                            onChange={(event) => handleContactInformationChange("degreeType", event)}
+                            className="
                     mt-1
                     block
                     mx-12
@@ -218,10 +254,10 @@ function ContactInformation({ setSavedContactInformation }) {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Major</span>
-                        <input type="text" 
-                        value={contactInformation.major}
-                        onChange={(event) => handleContactInformationChange("major", event)}
-                        className="
+                        <input type="text"
+                            value={contactInformation.major}
+                            onChange={(event) => handleContactInformationChange("major", event)}
+                            className="
                     mt-1
                     block
                     mx-12
@@ -234,10 +270,10 @@ function ContactInformation({ setSavedContactInformation }) {
                 <div className="flex flex-col mt-12 my-2">
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Website</span>
-                        <input type="url" 
-                        value={contactInformation.websiteUrl}
-                        onChange={(event) => handleContactInformationChange("websiteUrl", event)}
-                        className="
+                        <input type="url"
+                            value={contactInformation.websiteUrl}
+                            onChange={(event) => handleContactInformationChange("websiteUrl", event)}
+                            className="
                     mt-1
                     block
                     mx-12
@@ -248,10 +284,10 @@ function ContactInformation({ setSavedContactInformation }) {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Linkedin</span>
-                        <input type="text" 
-                        value={contactInformation.linkedinUrl}
-                        onChange={(event) => handleContactInformationChange("linkedinUrl", event)}
-                        className="
+                        <input type="text"
+                            value={contactInformation.linkedinUrl}
+                            onChange={(event) => handleContactInformationChange("linkedinUrl", event)}
+                            className="
                     mt-1
                     block
                     mx-12
@@ -262,10 +298,10 @@ function ContactInformation({ setSavedContactInformation }) {
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Github</span>
-                        <input type="url" 
-                        value={contactInformation.githubUrl}
-                        onChange={(event) => handleContactInformationChange("githubUrl", event)}
-                        className="
+                        <input type="url"
+                            value={contactInformation.githubUrl}
+                            onChange={(event) => handleContactInformationChange("githubUrl", event)}
+                            className="
                     mt-1
                     block
                     mx-12
