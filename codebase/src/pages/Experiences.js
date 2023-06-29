@@ -19,18 +19,7 @@ async function getExperiencesFromStorage() {
 
 function Experiences({setSavedExperiences}) {
     const [storedExperiences, setStoredExperiences] = useState(null);
-    const [experiences, setExperiences] = useState( 
-        storedExperiences
-        ?? [
-        {
-            jobTitle: "",
-            company: "",
-            startDate: "",
-            endDate: "",
-            isCurrentPosition: false,
-            description: ""
-        }
-    ]);
+    const [experiences, setExperiences] = useState([]);
 
     function addExperience() {
         setExperiences(experiences => [
@@ -66,10 +55,7 @@ function Experiences({setSavedExperiences}) {
 
     useEffect(() => {
         if (storedExperiences) {
-            setExperiences((prevStoredExperiences) => ({
-            ...prevStoredExperiences,
-            ...storedExperiences
-          }));
+            setExperiences(storedExperiences);
         }
       }, [storedExperiences]);
 
