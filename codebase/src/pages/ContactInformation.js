@@ -33,6 +33,7 @@ function ContactInformation({ setSavedContactInformation }) {
             university: storedContactInformation?.university ?? "",
             educationLevel: storedContactInformation?.educationLevel ?? "",
             major: storedContactInformation?.major ?? "",
+            gpa: storedContactInformation?.gpa ?? 0.00,
             websiteUrl: storedContactInformation?.websiteUrl ?? "",
             linkedinUrl: storedContactInformation?.linkedinUrl ?? "",
             githubUrl: storedContactInformation?.githubUrl ?? ""
@@ -49,10 +50,7 @@ function ContactInformation({ setSavedContactInformation }) {
     // set the contact information based on the stored information from chrome storage 
     useEffect(() => {
         if (storedContactInformation) {
-          setContactInformation((prevContactInformation) => ({
-            ...prevContactInformation,
-            ...storedContactInformation
-          }));
+          setContactInformation(storedContactInformation);
         }
       }, [storedContactInformation]);
 
@@ -283,6 +281,20 @@ function ContactInformation({ setSavedContactInformation }) {
                     focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" >
                         {selectMajors}
                         </select>
+                    </label>
+                    <label className="flex flex-col justify-center">
+                        <span className="text-gray-700">GPA</span>
+                        <input type="url"
+                            value={contactInformation.gpa}
+                            onChange={(event) => handleContactInformationChange("gpa", event)}
+                            className="
+                    mt-1
+                    block
+                    mx-12
+                    rounded-md
+                    bg-gray-100
+                    border-transparent
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
                     </label>
                 </div>
                 <div className="flex flex-col mt-12 my-2">
