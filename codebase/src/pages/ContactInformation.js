@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { stateList, countryList } from "../array"
+import { stateList, countryList, educationLevelList, collegeMajorList, universityList } from "../arrayConstants"
 import { getChromeStorage } from "../chrome";
 
 async function getContactInformationFromStorage() {
@@ -31,7 +31,7 @@ function ContactInformation({ setSavedContactInformation }) {
             state: storedContactInformation?.state ?? "Alabama",
             country: storedContactInformation?.country ?? "United States",
             university: storedContactInformation?.university ?? "",
-            degreeType: storedContactInformation?.degreeType ?? "",
+            educationLevel: storedContactInformation?.educationLevel ?? "",
             major: storedContactInformation?.major ?? "",
             websiteUrl: storedContactInformation?.websiteUrl ?? "",
             linkedinUrl: storedContactInformation?.linkedinUrl ?? "",
@@ -62,6 +62,18 @@ function ContactInformation({ setSavedContactInformation }) {
 
     const selectCountryNames = countryList.map((country) =>
         <option>{country}</option>
+    );
+
+    const selectEducationLevels = educationLevelList.map((educationLevel) =>
+        <option>{educationLevel}</option>
+    );
+
+    const selectMajors = collegeMajorList.map((major) =>
+    <option>{major}</option>
+    );
+
+    const selectUniversities = universityList.map((university) =>
+    <option>{university}</option>
     );
 
     function handleContactInformationChange(id, event) {
@@ -226,7 +238,7 @@ function ContactInformation({ setSavedContactInformation }) {
                 <div className="flex flex-col mt-12 my-2">
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">University</span>
-                        <input type="text"
+                        <select 
                             value={contactInformation.university}
                             onChange={(event) => handleContactInformationChange("university", event)}
                             className="
@@ -236,13 +248,15 @@ function ContactInformation({ setSavedContactInformation }) {
                     rounded-md
                     bg-gray-100
                     border-transparent
-                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="">
+                        {selectUniversities}
+                    </select>
                     </label>
                     <label className="flex flex-col justify-center">
-                        <span className="text-gray-700">Degree Type</span>
-                        <input type="text"
-                            value={contactInformation.degreeType}
-                            onChange={(event) => handleContactInformationChange("degreeType", event)}
+                        <span className="text-gray-700">Education Level</span>
+                        <select 
+                            value={contactInformation.educationLevel}
+                            onChange={(event) => handleContactInformationChange("educationLevel", event)}
                             className="
                     mt-1
                     block
@@ -250,11 +264,13 @@ function ContactInformation({ setSavedContactInformation }) {
                     rounded-md
                     bg-gray-100
                     border-transparent
-                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="">
+                        {selectEducationLevels}
+                    </select>
                     </label>
                     <label className="flex flex-col justify-center">
                         <span className="text-gray-700">Major</span>
-                        <input type="text"
+                        <select 
                             value={contactInformation.major}
                             onChange={(event) => handleContactInformationChange("major", event)}
                             className="
@@ -264,7 +280,9 @@ function ContactInformation({ setSavedContactInformation }) {
                     rounded-md
                     bg-gray-100
                     border-transparent
-                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" />
+                    focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="" >
+                        {selectMajors}
+                        </select>
                     </label>
                 </div>
                 <div className="flex flex-col mt-12 my-2">
